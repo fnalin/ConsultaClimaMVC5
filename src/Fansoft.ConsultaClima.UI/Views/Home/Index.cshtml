@@ -1,0 +1,41 @@
+﻿<div class="row" id="tops"><p class="text-center">Carregando ... </p></div>
+<hr />
+
+<div class="row" style="padding:15px;">
+    <select class="form-control" id="cidades-select" style="width:100%;">
+        <option></option>
+    </select>
+</div>
+
+<div class="row" id="porCidade"></div>
+
+<hr />
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tops").load("/get-tops");
+
+            $.ajax({
+                url: 'get-cidades',
+                success: function (data) {
+                    $('#cidades-select').select2({
+                        placeholder: 'Selecione a cidade ...',
+                        data: data
+                    }).on('select2:select', function (e) {
+                        var data = e.params.data;
+                        // console.log(data);
+                        let url = `/get-por-cidade/?cidadeId=${data.id}&cidadeNome=${encodeURIComponent(data.text)}`;
+                        // console.log(url);
+                        $("#porCidade").html('<p class="text-center">Carregando...</p>').load(url);
+                    });
+                }
+            });
+
+
+
+        });
+
+        $('.inicio').addClass('active');
+    </script>
+}

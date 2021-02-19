@@ -1,0 +1,30 @@
+﻿@model Fansoft.ConsultaClima.UI.Models.GetPorCidadeVM
+@using System.Globalization;
+
+<h2 class="text-center">Clima para os próximos 7 dias para a cidade de @Model.Cidade</h2>
+
+<ul style="display: flex; list-style:none; padding: 0;">
+
+
+
+    @foreach (var item in Model.Dados)
+    {
+        <li style="border: solid 1px #808080;border-radius:5px;width:16%;min-width:150px;">
+
+                <p style="background-color:#dbd7d7;padding: 2px 10px;font-size:1.2em;font-weight:bold;">
+                    @item.DataPrevisao.ToShortDateString() <br />
+                    @item.DataPrevisao.ToString("dddd", new CultureInfo("pt-BR"))
+                </p>
+
+                <p style="padding: 2px 10px;">
+                    @item.Clima <br />
+                    Mínima: @(item.TemperaturaMinima) ºC <br />
+                    Máxima: @(item.TemperaturaMaxima) ºC
+                </p>
+        </li>
+    }
+
+
+
+
+</ul>

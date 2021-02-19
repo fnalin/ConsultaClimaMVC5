@@ -1,0 +1,39 @@
+﻿@model Fansoft.ConsultaClima.UI.Models.ClimaGetTopsVM
+
+<div class="col-md-6 col-sm-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="2">Cidades mais quentes hoje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TopQuentes) 
+            {
+            <tr>
+                <td>@item.Cidade / @item.UF</td>
+                <td>Máx: @(item.Temp)ºC</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="col-md-6 col-sm-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="2">Cidades mais frias hoje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TopFrias)
+            {
+                <tr>
+                    <td>@item.Cidade / @item.UF</td>
+                    <td>Máx: @(item.Temp)ºC</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
